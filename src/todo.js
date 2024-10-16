@@ -10,7 +10,7 @@ const createTodoList = (listName = 'default') => {
 
 export const addTodoList = (listName = 'default') => {
   let todoList = todoLists.find(
-    (list) => list.listName.toLowerCase() === listName
+    (list) => list.listName.toLowerCase() === listName.toLowerCase()
   );
 
   if (!todoList) {
@@ -27,7 +27,7 @@ export const addTodo = (
   listName = 'default'
 ) => {
   let todoList = todoLists.find(
-    (list) => list.listName.toLowerCase() === listName
+    (list) => list.listName.toLowerCase() === listName.toLowerCase()
   );
 
   if (!todoList) {
