@@ -1,4 +1,5 @@
 import { addTodo, getAllTodoLists } from './todo';
+import { todoCards } from './todoListDom';
 import { createElement } from './utils';
 
 const form = createElement('form', { method: 'POST', action: '/' });
@@ -60,7 +61,9 @@ form.addEventListener('submit', (e) => {
 
   addTodo(title, description, date, priority, listName);
 
-  console.log(getAllTodoLists());
+  const mainContent = document.querySelector('.mainContent');
+  mainContent.innerHTML = '';
+  mainContent.append(...todoCards);
 });
 
 export { form };
