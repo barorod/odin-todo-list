@@ -1,4 +1,4 @@
-export const createElement = (tag, { className, ...options }) => {
+export const createElement = (tag, { className = '', ...options }) => {
   const element = document.createElement(tag);
 
   Object.assign(element, options);
