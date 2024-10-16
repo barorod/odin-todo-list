@@ -7,8 +7,8 @@ import {
   getTodosFromList,
 } from './todo';
 
-addTodoList('test');
-addTodo('Todo Title', 'Todo description', new Date(), true);
+addTodoList('TEST');
+addTodo('Todo Title', 'Todo description', new Date(), true, 'test');
 addTodo('Todo Title 2', 'Todo description 2', new Date(), false);
 
 console.log(getAllTodoLists());

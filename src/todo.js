@@ -9,10 +9,12 @@ const createTodoList = (listName = 'default') => {
 };
 
 export const addTodoList = (listName = 'default') => {
-  let todoList = todoLists.find((list) => list.listName === listName);
+  let todoList = todoLists.find(
+    (list) => list.listName.toLowerCase() === listName
+  );
 
   if (!todoList) {
-    todoList = createTodoList(listName);
+    todoList = createTodoList(listName.toLowerCase());
     todoLists.push(todoList);
   }
 };
@@ -24,14 +26,17 @@ export const addTodo = (
   priority,
   listName = 'default'
 ) => {
-  const todoList = todoLists.find((list) => list.listName === listName);
+  let todoList = todoLists.find(
+    (list) => list.listName.toLowerCase() === listName
+  );
 
-  if (todoList) {
-    const newTodo = createTodo(title, description, dueDate, priority);
-    todoList.todos.push(newTodo);
-  } else {
-    console.log(`Todo list "${listName}" not found.`);
+  if (!todoList) {
+    todoList = createTodoList(listName.toLowerCase());
+    todoLists.push(todoList);
   }
+
+  const newTodo = createTodo(title, description, dueDate, priority);
+  todoList.todos.push(newTodo);
 };
 
 export const getTodosFromList = (listName) => {
