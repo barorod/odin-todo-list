@@ -1,7 +1,7 @@
 import { form } from './inputDom';
 import './normalize.css';
+import { renderTodos } from './renderTodosDom';
 import './styles.css';
-import { todoCards } from './todoListDom';
 
 const addTodoBtn = document.querySelector('#addTodoBtn');
 const mainContent = document.querySelector('.mainContent');
@@ -11,4 +11,5 @@ addTodoBtn.addEventListener('click', () => {
   mainContent.append(form);
 });
 
-mainContent.append(...todoCards);
+const todos = renderTodos();
+mainContent.append(...todos);

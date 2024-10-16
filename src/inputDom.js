@@ -1,5 +1,5 @@
-import { addTodo, getAllTodoLists } from './todo';
-import { todoCards } from './todoListDom';
+import { addTodo, getAllTodos } from './todo';
+import { renderTodos } from './renderTodosDom';
 import { createElement } from './utils';
 
 const form = createElement('form', { method: 'POST', action: '/' });
@@ -9,7 +9,7 @@ const formFields = [
   { label: 'description', type: 'textarea', textContent: 'Description' },
   { label: 'date', type: 'datetime-local', textContent: 'Due date' },
   { label: 'priority', type: 'checkbox', textContent: 'Priority' },
-  { label: 'listName', type: 'text', textContent: 'Categories' },
+  { label: 'category', type: 'text', textContent: 'Category' },
 ];
 
 const fields = formFields.map((el) => {
@@ -46,7 +46,7 @@ form.addEventListener('submit', (e) => {
   const description = formData.get('description');
   const date = formData.get('date');
   const priority = formData.get('priority');
-  let listName = formData.get('listName');
+  let category = formData.get('category').toLowerCase();
 
   if (!title || !description || !date) {
     alert(
@@ -55,15 +55,17 @@ form.addEventListener('submit', (e) => {
     return;
   }
 
-  if (!listName) {
-    listName = 'default';
+  if (!category) {
+    category = 'default';
   }
 
-  addTodo(title, description, date, priority, listName);
+  addTodo(title, description, date, priority, category);
 
   const mainContent = document.querySelector('.mainContent');
   mainContent.innerHTML = '';
-  mainContent.append(...todoCards);
+  const updatedTodos = renderTodos();
+  mainContent.append(...updatedTodos);
+  console.log(getAllTodos());
 });
 
 export { form };
