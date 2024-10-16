@@ -6,10 +6,23 @@ import './styles.css';
 const addTodoBtn = document.querySelector('#addTodoBtn');
 const mainContent = document.querySelector('.mainContent');
 
-addTodoBtn.addEventListener('click', () => {
+function updateDisplay() {
+  const todos = renderTodos();
   mainContent.innerHTML = '';
-  mainContent.append(form);
+  if (todos.length === 0 || mainContent.contains(form)) {
+    mainContent.append(form);
+  } else {
+    mainContent.append(...todos);
+  }
+}
+
+addTodoBtn.addEventListener('click', () => {
+  if (mainContent.contains(form)) {
+    updateDisplay();
+  } else {
+    mainContent.innerHTML = '';
+    mainContent.append(form);
+  }
 });
 
-const todos = renderTodos();
-mainContent.append(...todos);
+updateDisplay();

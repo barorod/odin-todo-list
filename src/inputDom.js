@@ -61,6 +61,7 @@ form.addEventListener('submit', (e) => {
 
   addTodo(title, description, date, priority, category);
 
+  form.reset();
   const mainContent = document.querySelector('.mainContent');
   mainContent.innerHTML = '';
   const updatedTodos = renderTodos();
