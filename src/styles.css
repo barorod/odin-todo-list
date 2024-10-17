@@ -101,3 +101,48 @@ textarea {
 .submitBtn:hover {
   background-color: #0056b3;
 }
+
+.mainContent:has(.todoCard) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 8px;
+  padding: 16px;
+}
+
+.todoCard {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.todoTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.todoDescription {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.todoDate {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.todoPriority {
+  font-size: 14px;
+  font-weight: bold;
+  color: #4caf50;
+}
+
+.todoPriority:before {
+  content: 'Priority: ';
+  font-weight: normal;
+}

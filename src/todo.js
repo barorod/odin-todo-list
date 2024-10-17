@@ -1,4 +1,6 @@
-const todos = [];
+const populateTodos = () => JSON.parse(localStorage.getItem('todos')) || [];
+
+const todos = populateTodos();
 
 const createTodo = (
   title,
@@ -6,16 +8,17 @@ const createTodo = (
   dueDate,
   priority,
   category = 'default'
-) => {
-  return { title, description, dueDate, priority, category };
-};
+) => ({ title, description, dueDate, priority, category });
 
-export const addTodo = (title, description, dueDate, priority, category) => {
-  if (!category) {
-    category = 'default';
-  }
-  const newTodo = createTodo(title, description, dueDate, priority, category);
-  todos.push(newTodo);
+export const addTodo = (
+  title,
+  description,
+  dueDate,
+  priority,
+  category = 'default'
+) => {
+  todos.push(createTodo(title, description, dueDate, priority, category));
+  localStorage.setItem('todos', JSON.stringify(todos));
 };
 
 export const getAllTodos = () => todos;
